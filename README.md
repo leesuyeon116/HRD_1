@@ -1,8 +1,10 @@
 ## 데이터베이스
 
 CREATE TABLE member_tbl (
-    custno NUMBER(6) not NULL,
-    custname VARCHAR2(20),
+
+custno NUMBER(6) not NULL,
+
+ custname VARCHAR2(20),
     phone VARCHAR2(13),
     address VARCHAR2(60),
     joindate DATE,
