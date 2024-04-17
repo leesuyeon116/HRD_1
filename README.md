@@ -1,3 +1,4 @@
+## DB
 ```sql
 -- member_tbl_02 테이블 생성
 CREATE TABLE member_tbl_02 (
