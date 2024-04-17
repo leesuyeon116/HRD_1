@@ -45,6 +45,20 @@ function success() {
 	alert("회원등록이 완료되었습니다!");
 }
 
+function search() {
+	window.location = 'list.jsp';
+	
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
