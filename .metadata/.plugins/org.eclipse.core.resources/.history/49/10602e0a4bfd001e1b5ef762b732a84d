@@ -91,10 +91,9 @@
 				</tr>
 
 				<tr>
-					<td colspan="2">
-						<input type="submit" value="수정"onclick="return modify()"> 
-						<input type="button" value="조회" onclick="return search()">
-					</td>
+					<td colspan="2"><input type="submit" value="수정"
+						onclick="return modify()"> <input type="button" value="조회"
+						onclick="return search()"></td>
 				</tr>
 			</table>
 		</form>

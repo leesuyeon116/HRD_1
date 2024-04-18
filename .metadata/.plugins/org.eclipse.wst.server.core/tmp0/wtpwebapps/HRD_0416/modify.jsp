@@ -7,55 +7,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>modify</title>
+<title>회원 정보 수정</title>
+<script type="text/javascript" src="check.js"></script>
 </head>
 <body>
-	<script type="text/javascript" src="check.js"></script>
 
 	<jsp:include page="header.jsp"></jsp:include>
-	<section
-		style="position: fixed; top: 60px; width: 100%; height: 100%; background-color: lightgray">
-		<h2 style="text-align: center;">
-			<b>홈쇼핑 회원 정보 수정</b>
-		</h2>
-		<br>
 
-		<form style="display: flex; align-items: center; justify-content: center; text-align: center">
+	<%
+	Connection conn = null;
+	Statement stmt = null;
+	String mod_custno = request.getParameter("mod_custno");
+	String custname = "";
+	String phone = "";
+	String address = "";
+	Date joindate;
+	String grade = "";
+	String city = "";
+	String joindateStr = "";
+
+	try {
+		conn = Util.getConnection();
+		stmt = conn.createStatement();
+		String sql = "SELECT * FROM member_tbl_02 WHERE custno = " + mod_custno;
+		ResultSet rs = stmt.executeQuery(sql);
+		rs.next();
+		mod_custno = rs.getString("custno");
+		custname = rs.getString("custname");
+		phone = rs.getString("phone");
+		address = rs.getString("address");
+		joindate = rs.getDate("joindate");
+		grade = rs.getString("grade");
+		city = rs.getString("city");
+
+		SimpleDateFormat tranFormat = new SimpleDateFormat("yyyy-MM-dd");
+		joindateStr = tranFormat.format(joindate);
+	}
+
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	%>
+
+	<section style="position: fixed; top: 60px; width: 100%; height: 100%; background-color: lightgray">
+		<h2 style="text-align: center;"><b>홈쇼핑 회원 정보 수정</b></h2>
+		<form method="post" action="action.jsp" style="display: flex; align-items: center; justify-content: center; text-align: center">
+			<input type="hidden" name="mode" value="modify">
 			<table border="1">
-				<%
-				Connection conn = null;
-				Statement stmt = null;
-				String mod_custno = request.getParameter("mod_custno");
-				String custname = "";
-				String phone = "";
-				String address = "";
-				Date joindate;
-				String grade = "";
-				String city = "";
-				String joindateStr = "";
-
-				try {
-					conn = Util.getConnection();
-					stmt = conn.createStatement();
-					String sql = "SELECT * FROM member_tbl_02 WHERE custno = " + mod_custno;
-					ResultSet rs = stmt.executeQuery(sql);
-					rs.next();
-					mod_custno = rs.getString("custno");
-					custname = rs.getString("custname");
-					phone = rs.getString("phone");
-					address = rs.getString("address");
-					joindate = rs.getDate("joindate");
-					grade = rs.getString("grade");
-					city = rs.getString("city");
-
-					SimpleDateFormat tranFormat = new SimpleDateFormat("yyyy-MM-dd");
-					joindateStr = tranFormat.format(joindate);
-				}
-
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-				%>
 				<tr>
 					<td>회원번호</td>
 					<td><input type="text" name="custno" value="<%=mod_custno%>"></td>
@@ -94,7 +92,7 @@
 
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="수정" onclick="return modify()"> 
+						<input type="submit" value="수정"onclick="return modify()"> 
 						<input type="button" value="조회" onclick="return search()">
 					</td>
 				</tr>

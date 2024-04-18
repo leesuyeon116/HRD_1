@@ -22,10 +22,7 @@
 	<input type="hidden" name="mode" value="instert">
 	
 	<table border="1">
-	
 		<% 
-		request.setCharacterEncoding("UTF-8");
-		
 		Connection conn = null; //변수선언 부분
 		Statement stmt = null;
 		String custno="";

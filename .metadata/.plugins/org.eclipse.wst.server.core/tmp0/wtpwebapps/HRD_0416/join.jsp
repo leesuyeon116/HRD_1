@@ -17,9 +17,15 @@
 	<section style="position: fixed; top: 60px; width: 100%; height: 100%; background-color: lightgray">
 	<h2 style="text-align: center;"><b>홈쇼핑 회원 등록</b></h2><br>
 	
-	<form name="frm" style=" display: flex; align-items: center; justify-content: center; text-align: center">
+	<form method="post" action="action.jsp" name="frm" style=" display: flex; align-items: center; justify-content: center; text-align: center">
+	
+	<input type="hidden" name="mode" value="instert">
+	
 	<table border="1">
+	
 		<% 
+		request.setCharacterEncoding("UTF-8");
+		
 		Connection conn = null; //변수선언 부분
 		Statement stmt = null;
 		String custno="";
@@ -64,7 +70,7 @@
 			<td><input type="text" name="grade"></td>
 		</tr>
 		<tr>
-			<td>도시</td>
+			<td>도시코드</td>
 			<td><input type="text" name="city"></td>
 		</tr>
 		<tr>
